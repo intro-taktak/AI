@@ -1,2 +1,2 @@
 # AI
-keras/tensorflow/noob!
+keras/tensorflow
