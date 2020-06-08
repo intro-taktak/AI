@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animalface.css') }}">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <p style="text-align:center; font-size: 15px">
+        <a href="http://121.140.112.233/files/project.docx">
+            <strong>Tensoflow와 KERAS 환경에서 합성곱신경망(Convolutional Neural Network, CNN) 알고리즘을 이용한 패션 이미지 분석</strong>
+        </a>
+    </p>
+    <div style="text-align:center; font-size: 10px">
+
+        <img src="{{ url_for('static', filename='img/pre.PNG') }}" width="640px"><br><br>
+        * 카테고리 예측에 실패 하더라도 유추 확률 순서대로 카테고리를 추천합니다. *<br>
+        ex) top 51.31 / outer 48.12 / pants 0.57 / dress 0.0 / skirt 0.0 / suit 0.0<br><br>
+        
+
+    </div>
+    <form action = "http://121.140.112.233/uploader" method = "POST" enctype = "multipart/form-data">
+        <div class="file-upload">
+            <div class="image-upload-wrap">
+                <input class="file-upload-input" type='file' name = 'file' onchange="readURL(this);" accept="image/*" />
+                <div class="drag-text">
+                    <h3>드래그 앤 드롭 하거나 클릭하여 이미지를 업로드하세요.<br>
+                        <p style="font-size: 10px">※파일 이름에 한글이 포함된 경우 오류가 발생할 수 있습니다.※</p>
+                    </h3>
+                </div>
+            </div>
+            <div class="file-upload-content" >
+                <img class="file-upload-image" id="face-image" src="#" alt="your image" />
+                <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">Remove
+                        <span class="image-title">Uploaded Image</span>
+                    </button>
+                </div>
+
+            </div>
+            <p>
+                <input type="submit" value="시작" style="width: 600px; height: 50px; color: red; background-color: white"></input>
+            </div>
+        </form>
+
+        <div style="text-align:center" >
+            <p>
+                1. 입력하신 정보는 본 테스트 이외의 용도로 사용하지 않습니다.<br>
+                <strong>2. 파일 이름에 한글이 포함된 경우 오류가 발생할 수 있습니다.<br></strong>
+                3. 지원 카테고리 : 원피스(dress), 아우터(outer), 바지(pants), 치마(skirt), 투피스(suit), 상의(top)<p>
+                    <a href="http://121.140.112.233/files/project.docx"><img src="{{ url_for('static', filename='img/icon.PNG') }}"><br>개발보고서 다운로드</a>
+                    <br><p>
+                    <a href="http://121.140.112.233/files/Hyperparameter2.docx"><img src="{{ url_for('static', filename='img/icon.PNG') }}"><br>hyperparameter tuning 다운로드</a><br>
+
+                    <p><br>
+                        <img src="{{ url_for('static', filename='img/keras.png') }}" height="50px"><br>
+                        <img src="{{ url_for('static', filename='img/tensorflow.png') }}" height="80px">
+                        <br>
+                        <a href="http://121.140.112.233/">돌아가기</a><p>
+                        </div>
+
+                        <p>
+
+                        </p>
+                        <div id="webcam-container" style="text-align:center"></div>
+                        <div id="label-container" style="text-align:center"></div>
+                        <script>
+                          function readURL(input) {
+                              if (input.files && input.files[0]) {
+
+                                var reader = new FileReader();
+
+                                reader.onload = function(e) {
+                                  $('.image-upload-wrap').hide();
+
+                                  $('.file-upload-image').attr('src', e.target.result);
+                                  $('.file-upload-content').show();
+
+                                  $('.image-title').html(input.files[0].name);
+                              };
+
+                              reader.readAsDataURL(input.files[0]);
+
+                          } else {
+                            removeUpload();
+                        }
+                    }
+
+                    function removeUpload() {
+                      $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+                      $('.file-upload-content').hide();
+                      $('.image-upload-wrap').show();
+                  }
+                  $('.image-upload-wrap').bind('dragover', function () {
+                      $('.image-upload-wrap').addClass('image-dropping');
+                  });
+                  $('.image-upload-wrap').bind('dragleave', function () {
+                      $('.image-upload-wrap').removeClass('image-dropping');
+                  });
+
+              </script>
+          </body>
+<!-- Copyright (c) 2020 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+
+</html>
